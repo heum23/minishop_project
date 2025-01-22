@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="/css/detail1.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div class="header">
+      <img onclick="moveUrl('main')" class="logo" src="/detailimg/logo1.png" />
+      <div class="shop">shop</div>
+      <div class="icon">
+        <img
+          onclick="moveUrl('none')"
+          class="logo1"
+          src="/detailimg/login.png"
+        />
+        <div class="cart">
+          <img
+            onclick="moveUrl('cart')"
+            class="logo1"
+            src="/detailimg/cart.png"
+          />
+          <div class="numLength"></div>
+        </div>
+      </div>
+    </div>
+    <!--  -->
+    <div class="inpit-wrap">
+      <!-- 아이디는 숫자, 중복 불가 -->
+      <input
+        onkeyup="check('id')"
+        type="number"
+        class="id"
+        placeholder="아이디를 입력해 주세요."
+      />
+      <div class="idInput"></div>
+
+      <!-- 이름 중복 가능 -->
+      <input
+        onkeyup="check('name')"
+        class="name"
+        placeholder="제품이름을 입력해주세요."
+      />
+      <div class="nameInput"></div>
+
+      <!-- 나이 숫자 -->
+      <input
+        onkeyup="check('age')"
+        type="number"
+        class="age"
+        placeholder="제품의 가격을 입력해주세요."
+      />
+      <div class="ageInput"></div>
+
+      <!-- 경력사항 최소 15자 이상 -->
+      <input
+        onkeyup="check('career')"
+        class="career"
+        placeholder="제품의 상세설명을 입력해주세요."
+      />
+      <div class="careerInput"></div>
+
+      <button
+        disabled
+        class="btn"
+        onclick="clickData(),changeImg()"
+        style="opacity: 0.5"
+      >
+        저장
+      </button>
+    </div>
+    <!-- 테이블 -->
+    <div class="main-wrap"></div>
+  </body>
+  <script src="/js/detail1.js"></script>
+</html>
