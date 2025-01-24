@@ -1,7 +1,7 @@
 const main = document.querySelector(".main-wrap");
 const moveUrl = (type) => {
   if (type === "none") {
-    alert("준비중입니다!");
+    Swal.fire("준비중입니다!", "", "warning");
   } else if (type === "main") {
     url = "http://127.0.0.1:5501/html/main.html";
   } else if (type === "cart") {
@@ -11,8 +11,12 @@ const moveUrl = (type) => {
 };
 //장바구니 숫자 띄우기
 let subData = JSON.parse(localStorage.getItem("cart")) || [];
-const cartNum = document.querySelector(".numLength");
-cartNum.innerHTML = `${subData.length}`;
+const cart_number = () => {
+  let subData = JSON.parse(localStorage.getItem("cart")) || [];
+  const cartNum = document.querySelector(".numLength");
+  cartNum.innerHTML = `${subData.length}`;
+};
+cart_number();
 main.innerHTML = `
             <table class="main" border="1">
               <thead>
@@ -42,6 +46,7 @@ const id = document.querySelector(".id");
 const nameValue = document.querySelector(".name");
 const age = document.querySelector(".age");
 const career = document.querySelector(".career");
+const btnType = document.querySelectorAll(".radioBtn");
 
 // 테이블 제거 함수
 const del = (id) => {
@@ -76,9 +81,9 @@ const reInput1 = (type, id) => {
     if (changeName === "") {
       div2.innerHTML = ``;
       checkInput2 = false;
-    } else if (changeName.length > 10) {
+    } else if (changeName.length < 2) {
       //15자 이상의 입력 조건
-      div2.innerHTML = `이름이 너무 깁니다!`;
+      div2.innerHTML = `이름이 너무 짧습니다!`;
       checkInput2 = false;
     } else {
       div2.innerHTML = ``;
@@ -154,9 +159,10 @@ const rewrite = (id) => {
       same.career = changeCareer;
       same.name = changeName;
       same.age = changeAge;
+      const numAuto = Number(same.age).toLocaleString("ko-KR");
       changeTd.innerHTML = `${same.career}`;
       changeTd_name.innerHTML = `${same.name}`;
-      changeTd_age.innerHTML = `${same.age}`;
+      changeTd_age.innerHTML = `${numAuto}`;
       window.localStorage.setItem("data", JSON.stringify(dataSet));
       fixbtn.innerHTML = `<button onclick="rewrite(${same.id})">수정</button>`;
     }
@@ -167,11 +173,12 @@ const rewrite = (id) => {
 const maketable = () => {
   sub.innerHTML = ""; // 테이블 초기화
   dataSet.forEach((item) => {
+    const numAuto = Number(item.age).toLocaleString("ko-KR");
     sub.innerHTML += `
                 <tr class="tr${item.id}">
                 <td ><img class="img" src ="${item.img}"/></td>
                   <td class="name${item.id}">${item.name}</td>
-                  <td class="age${item.id}">${item.age}</td>
+                  <td class="age${item.id}">${numAuto}원</td>
                   <td class="career${item.id}">${item.career}</td>
                   <td class="re${item.id}"><button onclick="rewrite(${item.id})" >수정</button></td>
                   <td><button onclick="del(${item.id})" class="delet">제거</button></td>
@@ -184,32 +191,56 @@ const maketable = () => {
 maketable();
 
 //이미지 랜덤저장
-const img = [
-  "../detailimg/img1.png",
-  "../detailimg/img2.jpeg",
-  "../detailimg/img3.jpeg",
-  "../detailimg/img4.png",
-  "../detailimg/img5.jpeg",
-  "../detailimg/img6.png",
-  "../detailimg/img7.jpg",
-  "../detailimg/img8.jpg",
-  "../detailimg/img9.png",
-  "../detailimg/img10.png",
-  "../detailimg/img11.png",
-  "../detailimg/img12.png",
-  "../detailimg/img13.png",
-  "../detailimg/img14.jpg",
-  "../detailimg/img15.jpg",
-  "../detailimg/img16.jpg",
-];
-let imgNum = Math.floor(Math.random() * 16);
+let img = [];
+
+let imgNum = Math.floor(Math.random() * 4);
 const changeImg = () => {
-  imgNum = Math.floor(Math.random() * 16);
+  imgNum = Math.floor(Math.random() * 4);
 };
-console.log(img[imgNum]);
-//데이터 저장 함수
+const btnType1 = document.querySelectorAll(".radioBtn");
+
+// 데이터 저장 함수
 const saveData = () => {
+  // 선택된 라디오 버튼의 값을 가져오기
+  let selectedType = "";
+  btnType1.forEach((btn) => {
+    if (btn.checked) {
+      selectedType = btn.value; // 체크된 버튼의 값을 저장
+
+      if (selectedType === "a") {
+        img = [
+          "../detailimg/img1.jpg",
+          "../detailimg/img2.jpg",
+          "../detailimg/img3.jpg",
+          "../detailimg/img4.jpg",
+        ];
+      } else if (selectedType === "b") {
+        img = [
+          "../detailimg/img5.jpg",
+          "../detailimg/img6.jpg",
+          "../detailimg/img7.jpg",
+          "../detailimg/img8.jpg",
+        ];
+      } else if (selectedType === "c") {
+        img = [
+          "../detailimg/img9.jpg",
+          "../detailimg/img10.jpg",
+          "../detailimg/img11.jpg",
+          "../detailimg/img12.jpg",
+        ];
+      } else if (selectedType === "d") {
+        img = [
+          "../detailimg/img13.jpg",
+          "../detailimg/img14.jpg",
+          "../detailimg/img15.jpg",
+          "../detailimg/img16.jpg",
+        ];
+      }
+    }
+  });
+
   let allData = {
+    type: selectedType, // 선택된 라디오 버튼의 값
     img: img[imgNum],
     id: id.value,
     name: nameValue.value,
@@ -301,6 +332,66 @@ const clickData = () => {
   document.querySelector(".name").value = "";
   document.querySelector(".age").value = "";
   document.querySelector(".career").value = "";
+  btnType1.forEach((btn) => {
+    btn.checked = false;
+  });
+
   btn.setAttribute("disabled", "true");
   btn.style.opacity = 0.5;
 };
+const header = document.querySelector(".header");
+const logoDiv = document.querySelector(".logoDiv");
+const mainTitle = document.querySelector(".shop");
+const icon = document.querySelector(".icon");
+const create = document.querySelector(".create");
+
+window.addEventListener("scroll", function () {
+  const scrollPosition = window.scrollY; // 현재 스크롤 위치 (픽셀)
+  // 예시: 페이지가 300px 이상 스크롤되면 특정 클래스 추가
+  if (scrollPosition > 50) {
+    header.classList.add("headerActive");
+
+    icon.innerHTML = `<img
+          onclick="moveUrl('none')"
+          class="logo1"
+          src="/detailimg/loginChange.png"
+        />
+        <div class="cart">
+          <img
+            onclick="moveUrl('cart')"
+            class="logo2"
+            src="/detailimg/cartChange.png"
+          />
+          <div class="numLength"></div>
+        </div>
+        `;
+    cart_number();
+    const cartNum = document.querySelector(".numLength");
+    cartNum.classList.remove("numLength");
+    cartNum.classList.add("white1");
+
+    mainTitle.classList.add("white");
+  } else {
+    header.classList.remove("headerActive");
+    mainTitle.classList.remove("white");
+
+    icon.innerHTML = `<img
+          onclick="moveUrl('none')"
+          class="logo1"
+          src="/detailimg/login1.png"
+        />
+        <div class="cart">
+          <img
+            onclick="moveUrl('cart')"
+            class="logo2"
+            src="/detailimg/cart.png"
+          />
+          <div class="numLength"></div>
+        </div>
+        `;
+    cart_number();
+    const cartNum = document.querySelector(".numLength");
+    cartNum.classList.add("numLength");
+    cartNum.classList.remove("white1");
+  }
+});

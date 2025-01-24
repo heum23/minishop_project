@@ -1,32 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css"
+    />
+
     <link rel="stylesheet" href="/css/main.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>SmartLiving</title>
+    <link href="/detailimg/logo3.png" rel="shortcut icon" type="image/x-icon" />
   </head>
   <body>
     <div class="header">
-      <img onclick="moveUrl('main')" class="logo" src="/detailimg/logo1.png" />
-      <div class="shop">shop</div>
+      <div class="logoDiv">
+        <img
+          onclick="moveUrl('main')"
+          class="logo"
+          src="/detailimg/logo5.png"
+        />
+      </div>
+      <div class="shop">SmartLiving</div>
       <div class="icon">
         <img
           onclick="moveUrl('none')"
           class="logo1"
-          src="/detailimg/login.png"
+          src="/detailimg/login1.png"
         />
         <div class="cart">
           <img
             onclick="moveUrl('cart')"
-            class="logo1"
+            class="logo2"
             src="/detailimg/cart.png"
           />
           <div class="numLength"></div>
         </div>
+        <div onclick="moveUrl('crate')" class="Create">등록</div>
       </div>
     </div>
+    <div class="btn-wrap">
+      <button onclick="makeDiv()" class="typeBtn1 active">All</button>
+      <button onclick="typeNum('a')" class="typeBtn2">TV</button>
+      <button onclick="typeNum('b')" class="typeBtn3">Sound</button>
+      <button onclick="typeNum('c')" class="typeBtn4">Icebox</button>
+      <button onclick="typeNum('d')" class="typeBtn5">Aircon</button>
+    </div>
     <div class="main-wrap"></div>
+    <!-- 탑 버튼 -->
+    <button class="up" id="scrollToTop" style="display: none">
+      <img class="upimg" src="/detailimg/up.png" />
+    </button>
+    <!-- 탑 버튼 -->
   </body>
   <script src="/js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </html>

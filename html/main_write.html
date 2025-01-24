@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css"
+    />
+
     <link rel="stylesheet" href="/css/detail1.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Create & Edit</title>
+    <link href="/detailimg/logo3.png" rel="shortcut icon" type="image/x-icon" />
   </head>
 
   <body>
     <div class="header">
-      <img onclick="moveUrl('main')" class="logo" src="/detailimg/logo1.png" />
-      <div class="shop">shop</div>
+      <img onclick="moveUrl('main')" class="logo" src="/detailimg/logo5.png" />
+      <div class="shop">Create & Edit</div>
       <div class="icon">
         <img
           onclick="moveUrl('none')"
           class="logo1"
-          src="/detailimg/login.png"
+          src="/detailimg/login1.png"
         />
         <div class="cart">
           <img
             onclick="moveUrl('cart')"
-            class="logo1"
+            class="logo2"
             src="/detailimg/cart.png"
           />
           <div class="numLength"></div>
@@ -30,12 +36,22 @@
     <!--  -->
     <div class="inpit-wrap">
       <!-- 아이디는 숫자, 중복 불가 -->
+      <div class="radio">
+        Type:
+        <input class="radioBtn" type="radio" name="type" value="a" />TV
+        <input class="radioBtn" type="radio" name="type" value="b" />
+        Sound
+        <input class="radioBtn" type="radio" name="type" value="c" /> Icebox
+
+        <input class="radioBtn" type="radio" name="type" value="d" /> Aircon
+      </div>
       <input
         onkeyup="check('id')"
         type="number"
         class="id"
         placeholder="아이디를 입력해 주세요."
       />
+      <br />
       <div class="idInput"></div>
 
       <!-- 이름 중복 가능 -->
@@ -44,6 +60,7 @@
         class="name"
         placeholder="제품이름을 입력해주세요."
       />
+      <br />
       <div class="nameInput"></div>
 
       <!-- 나이 숫자 -->
@@ -53,6 +70,7 @@
         class="age"
         placeholder="제품의 가격을 입력해주세요."
       />
+      <br />
       <div class="ageInput"></div>
 
       <!-- 경력사항 최소 15자 이상 -->
@@ -61,6 +79,7 @@
         class="career"
         placeholder="제품의 상세설명을 입력해주세요."
       />
+      <br />
       <div class="careerInput"></div>
 
       <button
@@ -76,4 +95,5 @@
     <div class="main-wrap"></div>
   </body>
   <script src="/js/detail1.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </html>

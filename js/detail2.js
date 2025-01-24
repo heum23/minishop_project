@@ -1,6 +1,6 @@
 const moveUrl = (type) => {
   if (type === "none") {
-    alert("준비중입니다!");
+    Swal.fire("준비중입니다!", "", "warning");
   } else if (type === "main") {
     url = "http://127.0.0.1:5501/html/main.html";
   } else if (type === "cart") {
@@ -15,6 +15,7 @@ const cart_number = () => {
   cartNum.innerHTML = `${subData.length}`;
 };
 cart_number();
+let subData = JSON.parse(localStorage.getItem("cart")) || [];
 // 1. Query string에서 ID 가져오기
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
@@ -25,10 +26,12 @@ const sameData = dataSet.find((item) => item.id === id);
 // 3. 데이터를 상세 페이지에 표시
 if (sameData) {
   const main = document.getElementById("main-wrap");
+  const numAuto = Number(sameData.age).toLocaleString("ko-KR");
+  console.log(numAuto);
   main.innerHTML = `
     <img class="detail_img" src="${sameData.img}"/>
     <h1>${sameData.name}</h1>
-    <p>가격: ${sameData.age}</p>
+    <p>가격: ${numAuto}원</p>
     <p>상세설명: ${sameData.career}</p>
     <button onclick="getItem()">장바구니 담기</button>
   `;
@@ -52,6 +55,7 @@ const getItem = () => {
   const same_cart = subData.find((item) => item.id === sameData.id);
 
   if (!same_cart) {
+    Swal.fire("장바구니에 담겼습니다.", "감사합니다", "success");
     // 중복이 아닐 경우에만 추가
     subData.push(sameData);
 
@@ -59,5 +63,62 @@ const getItem = () => {
     localStorage.setItem("cart", JSON.stringify(subData));
     cart_number();
   } else {
+    Swal.fire("이미 담으신 물품입니다.", "", "info");
   }
 };
+const header = document.querySelector(".header");
+const logoDiv = document.querySelector(".logoDiv");
+const mainTitle = document.querySelector(".shop");
+const icon = document.querySelector(".icon");
+const create = document.querySelector(".create");
+
+window.addEventListener("scroll", function () {
+  const scrollPosition = window.scrollY; // 현재 스크롤 위치 (픽셀)
+  // 예시: 페이지가 300px 이상 스크롤되면 특정 클래스 추가
+  if (scrollPosition > 50) {
+    header.classList.add("headerActive");
+
+    icon.innerHTML = `<img
+          onclick="moveUrl('none')"
+          class="logo1"
+          src="/detailimg/loginChange.png"
+        />
+        <div class="cart">
+          <img
+            onclick="moveUrl('cart')"
+            class="logo2"
+            src="/detailimg/cartChange.png"
+          />
+          <div class="numLength"></div>
+        </div>
+        `;
+    cart_number();
+    const cartNum = document.querySelector(".numLength");
+    cartNum.classList.remove("numLength");
+    cartNum.classList.add("white1");
+
+    mainTitle.classList.add("white");
+  } else {
+    header.classList.remove("headerActive");
+    mainTitle.classList.remove("white");
+
+    icon.innerHTML = `<img
+          onclick="moveUrl('none')"
+          class="logo1"
+          src="/detailimg/login1.png"
+        />
+        <div class="cart">
+          <img
+            onclick="moveUrl('cart')"
+            class="logo2"
+            src="/detailimg/cart.png"
+          />
+          <div class="numLength"></div>
+        </div>
+        `;
+    cart_number();
+    const cartNum = document.querySelector(".numLength");
+    cartNum.classList.add("numLength");
+    cartNum.classList.remove("white1");
+  }
+});

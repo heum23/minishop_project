@@ -1,31 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css"
+    />
+
     <link rel="stylesheet" href="/css/detail3.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>My Shopping List</title>
+    <link href="/detailimg/logo3.png" rel="shortcut icon" type="image/x-icon" />
   </head>
   <body>
     <div class="header">
-      <img onclick="moveUrl('main')" class="logo" src="/detailimg/logo1.png" />
-      <div class="shop">shop</div>
+      <img onclick="moveUrl('main')" class="logo" src="/detailimg/logo5.png" />
+      <div class="shop">My Shopping List</div>
       <div class="icon">
         <img
           onclick="moveUrl('none')"
           class="logo1"
-          src="/detailimg/login.png"
+          src="/detailimg/login1.png"
         />
         <div class="cart">
           <img
             onclick="moveUrl('cart')"
-            class="logo1"
+            class="logo2"
             src="/detailimg/cart.png"
           />
           <div class="numLength"></div>
         </div>
       </div>
     </div>
+    <div class="main-wrap"></div>
+    <div class="buybtn">
+      <button onclick="trash()" class="button">전체 비우기</button>
+      <button onclick="moveUrl('none')" class="buy">구매하기</button>
+    </div>
   </body>
   <script src="/js/detail3.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </html>
