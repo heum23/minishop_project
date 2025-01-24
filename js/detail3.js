@@ -39,14 +39,14 @@ const del = (id) => {
 
   window.localStorage.setItem("cart", JSON.stringify(subData));
   cartList();
-  cartNum.innerHTML = `${subData.length}`;
+  cart_number();
 };
 //비우기 함수
 const trash = () => {
   subData = [];
   window.localStorage.setItem("cart", JSON.stringify(subData));
   cartList();
-  cartNum.innerHTML = `${subData.length}`;
+  cart_number();
   Swal.fire("장바구니를 비웠습니다!", "", "info");
 };
 const header = document.querySelector(".header");
@@ -77,7 +77,7 @@ window.addEventListener("scroll", function () {
         `;
     cart_number();
     const cartNum = document.querySelector(".numLength");
-    cartNum.classList.remove("numLength");
+    cartNum.classList.remove("blue");
     cartNum.classList.add("white1");
 
     mainTitle.classList.add("white");
@@ -101,7 +101,25 @@ window.addEventListener("scroll", function () {
         `;
     cart_number();
     const cartNum = document.querySelector(".numLength");
-    cartNum.classList.add("numLength");
+    cartNum.classList.add("blue");
     cartNum.classList.remove("white1");
   }
+});
+// 스크롤 이벤트 감지
+const scrollToTopBtn = document.querySelector(".up");
+window.addEventListener("scroll", () => {
+  // 화면의 중간 높이보다 스크롤이 내려가면 버튼 표시
+  if (window.scrollY > window.innerHeight / 2) {
+    scrollToTopBtn.style.display = "block";
+  } else {
+    scrollToTopBtn.style.display = "none";
+  }
+});
+
+// 버튼 클릭 이벤트로 스크롤을 상단으로 이동
+scrollToTopBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth", // 부드러운 스크롤
+  });
 });

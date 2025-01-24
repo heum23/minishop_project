@@ -1,6 +1,7 @@
 const moveUrl = (type) => {
   if (type === "none") {
     Swal.fire("준비중입니다!", "", "warning");
+    return;
   } else if (type === "main") {
     url = "http://127.0.0.1:5501/html/main.html";
   } else if (type === "cart") {
@@ -9,13 +10,17 @@ const moveUrl = (type) => {
   window.location.href = url;
 };
 //장바구니 숫자 띄우기
+let subData = JSON.parse(localStorage.getItem("cart")) || [];
 const cart_number = () => {
-  let subData = JSON.parse(localStorage.getItem("cart")) || [];
-  const cartNum = document.querySelector(".numLength");
+  subData = JSON.parse(localStorage.getItem("cart")) || [];
+  console.log(subData);
+  let cartNum = document.querySelector(".numLength");
+  console.log(cartNum);
+  // cartNum = document.querySelector(".numLength");
   cartNum.innerHTML = `${subData.length}`;
 };
 cart_number();
-let subData = JSON.parse(localStorage.getItem("cart")) || [];
+
 // 1. Query string에서 ID 가져오기
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
@@ -27,7 +32,6 @@ const sameData = dataSet.find((item) => item.id === id);
 if (sameData) {
   const main = document.getElementById("main-wrap");
   const numAuto = Number(sameData.age).toLocaleString("ko-KR");
-  console.log(numAuto);
   main.innerHTML = `
     <img class="detail_img" src="${sameData.img}"/>
     <h1>${sameData.name}</h1>
@@ -57,10 +61,11 @@ const getItem = () => {
   if (!same_cart) {
     Swal.fire("장바구니에 담겼습니다.", "감사합니다", "success");
     // 중복이 아닐 경우에만 추가
-    subData.push(sameData);
 
+    subData.push(sameData);
     // 로컬 스토리지에 업데이트된 데이터 저장
     localStorage.setItem("cart", JSON.stringify(subData));
+    console.log("dsadad");
     cart_number();
   } else {
     Swal.fire("이미 담으신 물품입니다.", "", "info");
@@ -94,9 +99,9 @@ window.addEventListener("scroll", function () {
         `;
     cart_number();
     const cartNum = document.querySelector(".numLength");
-    cartNum.classList.remove("numLength");
-    cartNum.classList.add("white1");
 
+    cartNum.classList.add("white1");
+    cartNum.classList.remove("blue");
     mainTitle.classList.add("white");
   } else {
     header.classList.remove("headerActive");
@@ -118,7 +123,25 @@ window.addEventListener("scroll", function () {
         `;
     cart_number();
     const cartNum = document.querySelector(".numLength");
-    cartNum.classList.add("numLength");
+    cartNum.classList.add("blue");
     cartNum.classList.remove("white1");
   }
+});
+// 스크롤 이벤트 감지
+const scrollToTopBtn = document.querySelector(".up");
+window.addEventListener("scroll", () => {
+  // 화면의 중간 높이보다 스크롤이 내려가면 버튼 표시
+  if (window.scrollY > window.innerHeight / 2) {
+    scrollToTopBtn.style.display = "block";
+  } else {
+    scrollToTopBtn.style.display = "none";
+  }
+});
+
+// 버튼 클릭 이벤트로 스크롤을 상단으로 이동
+scrollToTopBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth", // 부드러운 스크롤
+  });
 });

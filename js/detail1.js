@@ -194,9 +194,16 @@ maketable();
 let img = [];
 
 let imgNum = Math.floor(Math.random() * 4);
+let stars = Math.random() * 5;
+let stars2 = stars.toFixed(1);
+let words = Math.floor(Math.random() * 9999);
 const changeImg = () => {
   imgNum = Math.floor(Math.random() * 4);
+  stars = Math.random() * 5;
+  stars2 = stars.toFixed(1);
+  words = Math.floor(Math.random() * 9999);
 };
+console.log(stars2);
 const btnType1 = document.querySelectorAll(".radioBtn");
 
 // 데이터 저장 함수
@@ -246,6 +253,8 @@ const saveData = () => {
     name: nameValue.value,
     age: age.value,
     career: career.value,
+    stars: stars2,
+    word: words,
   };
   dataSet.push(allData);
   window.localStorage.setItem("data", JSON.stringify(dataSet));
@@ -367,7 +376,7 @@ window.addEventListener("scroll", function () {
         `;
     cart_number();
     const cartNum = document.querySelector(".numLength");
-    cartNum.classList.remove("numLength");
+    cartNum.classList.remove("blue");
     cartNum.classList.add("white1");
 
     mainTitle.classList.add("white");
@@ -391,7 +400,25 @@ window.addEventListener("scroll", function () {
         `;
     cart_number();
     const cartNum = document.querySelector(".numLength");
-    cartNum.classList.add("numLength");
+    cartNum.classList.add("blue");
     cartNum.classList.remove("white1");
   }
+});
+// 스크롤 이벤트 감지
+const scrollToTopBtn = document.querySelector(".up");
+window.addEventListener("scroll", () => {
+  // 화면의 중간 높이보다 스크롤이 내려가면 버튼 표시
+  if (window.scrollY > window.innerHeight / 2) {
+    scrollToTopBtn.style.display = "block";
+  } else {
+    scrollToTopBtn.style.display = "none";
+  }
+});
+
+// 버튼 클릭 이벤트로 스크롤을 상단으로 이동
+scrollToTopBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth", // 부드러운 스크롤
+  });
 });

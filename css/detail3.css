@@ -1,6 +1,5 @@
 /* 기본 초기화 */
 body {
-  font-family: "GmarketSansMedium";
   margin: 0;
   background-color: #f1f1f1;
   color: #333;
@@ -48,7 +47,7 @@ body {
   margin-right: 50px;
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
 }
 
 .logo1 {
@@ -68,10 +67,9 @@ body {
 }
 
 .numLength {
-  font-size: 14px;
+  font-size: 12px;
   width: 22px;
   aspect-ratio: 1/1;
-  background-color: #0071e3; /* Apple 블루 색상 */
   color: white;
   border-radius: 50%;
   display: flex;
@@ -85,6 +83,7 @@ body {
 
 /* 메인 컨테이너 */
 .main-wrap {
+  font-family: "GmarketSansMedium";
   max-width: 1280px;
   margin: 50px auto 20px; /* 헤더 아래로 간격 */
   padding: 20px;
@@ -169,6 +168,9 @@ body {
   width: 50px;
   cursor: pointer;
 }
+.blue {
+  background-color: blue;
+}
 .white {
   font-size: 25px;
   font-weight: 800;
@@ -188,6 +190,34 @@ body {
   bottom: 0px;
   right: -10px;
   font-weight: lighter;
+}
+/* 탑 버튼 */
+#scrollToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  font-size: 25px;
+  width: 3vw;
+  height: 3vw;
+  background-color: white;
+  color: lightgray;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#scrollToTop:hover {
+  background-color: lightgray;
+}
+.upimg {
+  position: absolute;
+  top: 10%;
+  left: 15%;
+  width: 2vw;
+  height: 2vw;
 }
 /* 미디어 쿼리 - 화면 크기가 1024px 이하일 때 */
 @media screen and (max-width: 1024px) {
@@ -310,4 +340,162 @@ body {
   .trashbtn {
     width: 40px;
   }
+}
+/* footer */
+.footer {
+  width: 100%;
+  height: auto;
+  background-color: lightgray;
+}
+
+.footerWrap {
+  padding: 30px 50px;
+  box-sizing: border-box;
+}
+
+/* footer 첫번째 박스 */
+.footerBox1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* footer 첫번째 박스 왼쪽 영역 */
+.f_info img {
+  /* 로고 */
+  width: 70px;
+  height: 40px;
+  display: block;
+  margin-bottom: 30px;
+}
+.f_address {
+  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 10px;
+
+  font-weight: bold;
+}
+.f_privacy {
+  font-weight: bold;
+  color: black;
+  max-width: 420px;
+  display: flex;
+  flex-wrap: wrap;
+  white-space: nowrap;
+  box-sizing: border-box;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+.f_privacy div::after {
+  content: "|";
+  padding-left: 5px;
+  color: rgba(0, 0, 0, 0.5);
+}
+.f_privacy div:last-child::after {
+  content: "";
+}
+
+/* footer 첫번째 박스 오른쪽 영역 */
+.f_aboutDD {
+  display: flex;
+  font-size: 1.1rem;
+  gap: 2rem;
+}
+.f_aboutDD ul,
+.f_aboutDD li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin-bottom: 10px;
+}
+li:hover {
+  cursor: pointer;
+}
+.f_sub {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.text10 {
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+}
+
+@media screen and (max-width: 1000px) {
+  /* 반응형 1000px 이하 일 때 사라짐 */
+  .f_aboutDD {
+    display: none;
+  }
+}
+
+/* footer 두번째 박스 */
+.footerBox2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+/* footer 두번째 박스 왼쪽 영역 */
+.site {
+  display: flex;
+  font-weight: bold;
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+.rel {
+  font-size: 1.1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: white;
+}
+.rel:hover {
+  cursor: pointer;
+}
+
+.footerBox2 p {
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* footer 두번째 박스 오른쪽 영역*/
+.f_sns {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.f_sns_item {
+  position: relative;
+}
+.f_sns img {
+  width: 60px;
+  height: auto;
+  max-width: 100%;
+  transition: opacity 0.3s ease;
+}
+
+.f_sns:hover {
+  background-color: lightgray(0, 0, 0, 0.3); /* 반투명 검정색 */
+}
+
+.black_overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명 검정색 */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.f_sns_item:hover .black_overlay {
+  opacity: 1; /* 마우스 hover 시 오버레이 보이기 */
 }

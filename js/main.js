@@ -24,12 +24,15 @@ const typeNum = (type) => {
     const numAuto = Number(item.age).toLocaleString("ko-KR");
     main.innerHTML += `
         <div class="itembox div${item.id}">
+        
           <img onclick="redirectToDetail(${item.id})" class="item Img${item.id}" src="${item.img}" /> 
           <div class="mainText">${item.name}</div>
           <div>가격 : ${numAuto}원</div>
           <div onclick="like(${item.id})" class="heartDiv" data-liked="false" id="heartDiv${item.id}">
-            <img class="heart" src="/detailimg/heart.png" />
+          <img class="heart" src="/detailimg/heart.png" />
           </div>
+          
+              <div class='comment'><div class="imgDiv"><img class="star" src="/detailimg/stars.png" /> : ${item.stars} </div><div class="imgDiv"><img class="stars" src="/detailimg/comment.png" /> : ${item.word}</div></div>
         </div>`;
   });
 };
@@ -45,12 +48,15 @@ const makeDiv = () => {
       const numAuto = Number(item.age).toLocaleString("ko-KR");
       main.innerHTML += `
         <div onclick="redirectToDetail(${item.id})" class="itembox div${item.id}">
+         
           <img  class="item Img${item.id}" src="${item.img}" /> 
           <div class="mainText">${item.name}</div>
           <div> ${numAuto}원</div>
           <div onclick="like(${item.id})" class="heartDiv" data-liked="false" id="heartDiv${item.id}">
-            <img class="heart" src="/detailimg/heart.png" />
+          <img class="heart" src="/detailimg/heart.png" />
           </div>
+          <div class='comment'><div class="imgDiv"><img class="star" src="/detailimg/stars.png" /> : ${item.stars} </div><div class="imgDiv"><img class="stars" src="/detailimg/comment.png" /> : ${item.word}</div></div>
+          
         </div>`;
     });
   }
@@ -60,6 +66,7 @@ makeDiv();
 
 // 좋아요 함수
 const like = (id) => {
+  event.stopPropagation();
   const likebtn = document.getElementById(`heartDiv${id}`);
   const isLiked = likebtn.getAttribute("data-liked") === "true"; // 현재 상태 확인
 
@@ -125,7 +132,7 @@ window.addEventListener("scroll", function () {
           />
           <div class="numLength"></div>
         </div>
-        <div onclick="moveUrl('crate')" class="Create">등록</div>`;
+        `;
     cart_number();
     const cartNum = document.querySelector(".numLength");
     cartNum.classList.remove("numLength");
@@ -149,7 +156,7 @@ window.addEventListener("scroll", function () {
           />
           <div class="numLength"></div>
         </div>
-        <div onclick="moveUrl('crate')" class="Create">등록</div>`;
+        `;
     cart_number();
     const cartNum = document.querySelector(".numLength");
     cartNum.classList.add("numLength");
