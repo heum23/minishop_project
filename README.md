@@ -37,3 +37,6 @@
 
 <div style="display: flex; gap: 10px; align-items: center;">
 <img style="width: 200px; height:400px" src="/readme_img/main.png">
+<img style="width: 200px; height:400px" src="/readme_img/detail1.png">
+<img style="width: 200px; height:400px" src="/readme_img/detail2.png">
+<img style="width: 200px; height:400px" src="/readme_img/detail3.png">
