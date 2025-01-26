@@ -36,4 +36,4 @@
 <br>
 
 <div style="display: flex; gap: 10px; align-items: center;">
-<img style="width: 100px; height:500px" src="/readme_img/main.png">
+<img style="width: 200px; height:400px" src="/readme_img/main.png">
