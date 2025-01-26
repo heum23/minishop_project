@@ -1,18 +1,5 @@
 let dataSet = JSON.parse(window.localStorage.getItem("data")) || []; //
 
-// 예시 코드
-const endpoint = undefined; // undefined 값 확인
-console.log("Endpoint:", endpoint); // undefined 확인용
-fetch(`http://127.0.0.1:5500/html/${endpoint}`)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then((data) => console.log(data))
-  .catch((error) => console.error("Fetch error:", error));
-
 const moveUrl = (type) => {
   if (type === "none") {
     Swal.fire("준비중입니다!", "", "warning");
