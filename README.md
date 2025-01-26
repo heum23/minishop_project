@@ -9,7 +9,7 @@
 1. [기술스택](#-기술-스택)
 2. [기획의도](#-기획-의도)
 3. [전체 UI](#-전체-ui)
-4. [주요기능](#example)
+4. [주요기능](#-주요-기능들)
 5. [힘들었던점](#example)  
    <br>
 
@@ -40,3 +40,6 @@
 <img style="width: 200px; height:400px" src="/readme_img/detail1.png">
 <img style="width: 200px; height:400px" src="/readme_img/detail2.png">
 <img style="width: 200px; height:400px" src="/readme_img/detail3.png">
+<br>
+
+## 💡 주요 기능들 
