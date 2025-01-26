@@ -2,16 +2,16 @@
 
 <p align="center"><img src="/detailimg/logo5.png"></p>
 <div align=center>2025.01.20 ~ 2025.01.25 </div>
-<br>   
-
-## 🔗 목차    
-
-1. [기술스택](#기술-스택)   
-2. [기획의도](#기획-의도)   
-3. [전체 UI](#use"-"instead-of-spacing-words)   
-4. [주요기능](#example)
-5. [힘들었던점](#example)   
 <br>
+
+## 🔗 목차
+
+1. [기술스택](#기술-스택)
+2. [기획의도](#기획-의도)
+3. [전체 UI](#use"-"instead-of-spacing-words)
+4. [주요기능](#example)
+5. [힘들었던점](#example)  
+   <br>
 
 ## 🛠기술 스택
 
@@ -34,3 +34,6 @@
 ## 전체 UI
 
 <br>
+
+<div style="display: flex; gap: 10px; align-items: center;">
+<img src="/readme_img/main.png">
