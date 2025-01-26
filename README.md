@@ -42,4 +42,4 @@
 <img style="width: 200px; height:400px" src="/readme_img/detail3.png">
 <br>
 
-## 💡 주요 기능들 
+## 💡 주요 기능들
