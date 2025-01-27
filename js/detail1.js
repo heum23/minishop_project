@@ -184,7 +184,6 @@ const maketable = () => {
                   <td><button onclick="del(${item.id})" class="delet">제거</button></td>
                 </tr>
               `;
-    console.log();
   });
 };
 
@@ -422,3 +421,13 @@ scrollToTopBtn.addEventListener("click", () => {
     behavior: "smooth", // 부드러운 스크롤
   });
 });
+
+const plusCnt = () => {
+  dataSet = dataSet.map((item) => ({
+    ...item,
+    cnt: 1,
+  }));
+  window.localStorage.setItem("data", JSON.stringify(dataSet));
+};
+plusCnt();
+console.log(dataSet);

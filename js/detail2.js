@@ -13,9 +13,9 @@ const moveUrl = (type) => {
 let subData = JSON.parse(localStorage.getItem("cart")) || [];
 const cart_number = () => {
   subData = JSON.parse(localStorage.getItem("cart")) || [];
-  console.log(subData);
+
   let cartNum = document.querySelector(".numLength");
-  console.log(cartNum);
+
   // cartNum = document.querySelector(".numLength");
   cartNum.innerHTML = `${subData.length}`;
 };
@@ -56,7 +56,9 @@ const getItem = () => {
   }
 
   // 중복 데이터 확인
-  const same_cart = subData.find((item) => item.id === sameData.id);
+  const same_cart = subData.find(
+    (item) => Number(item.id) === Number(sameData.id)
+  );
 
   if (!same_cart) {
     Swal.fire("장바구니에 담겼습니다.", "감사합니다", "success");
@@ -65,10 +67,11 @@ const getItem = () => {
     subData.push(sameData);
     // 로컬 스토리지에 업데이트된 데이터 저장
     localStorage.setItem("cart", JSON.stringify(subData));
-    console.log("dsadad");
     cart_number();
   } else {
-    Swal.fire("이미 담으신 물품입니다.", "", "info");
+    same_cart.cnt += 1;
+    localStorage.setItem("cart", JSON.stringify(subData));
+    Swal.fire("추가로 담으셨습니다.", "", "info");
   }
 };
 const header = document.querySelector(".header");

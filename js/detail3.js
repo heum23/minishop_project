@@ -25,12 +25,31 @@ const cartList = () => {
   } else {
     subData.map((item) => {
       const numAuto = Number(item.age).toLocaleString("ko-KR");
-      main.innerHTML += `<div class="cart-wrap"><img class="img" src="${item.img}"/><div>제품명:${item.name} </div><div>가격:${numAuto}원 </div><div>상세내용:${item.career}</div><img class="trashbtn" onclick="del(${item.id})" src="/detailimg/trash.png"/></button></div>`;
+      main.innerHTML += `<div class="cart-wrap"><img class="img" src="${item.img}"/><div>제품명:${item.name} </div><div>가격:${numAuto}원 </div><div>상세내용:${item.career}</div><div>수량:  <span onclick="minusCnt(${item.id})"> - </span> ${item.cnt} <span onclick="changeCnt(${item.id})"> + </span></div><img class="trashbtn" onclick="del(${item.id})" src="/detailimg/trash.png"/></button></div>`;
     });
   }
 };
 cartList();
+
 let subData = JSON.parse(localStorage.getItem("cart")) || [];
+// 장바구니 수량 조절 함수
+const changeCnt = (id) => {
+  const sameCnt = subData.find((item) => item.id == id);
+  sameCnt.cnt += 1;
+  window.localStorage.setItem("cart", JSON.stringify(subData));
+  cartList();
+};
+const minusCnt = (id) => {
+  const sameCnt = subData.find((item) => item.id == id);
+  if (sameCnt.cnt === 1) {
+    Swal.fire("최소 개수입니다", "", "info");
+  } else {
+    sameCnt.cnt -= 1;
+    window.localStorage.setItem("cart", JSON.stringify(subData));
+    cartList();
+  }
+};
+
 const del = (id) => {
   Swal.fire("삭제되었습니다", "", "success");
   const sameCart = subData.filter((item) => Number(item.id) !== id);
