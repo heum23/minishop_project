@@ -23,7 +23,7 @@
 <br>
 <br>
 
-<div style="display: flex; gap: 10px; align-items: center;">
+<div style="display: flex; gap: 30px; align-items: center;">
   <img src="https://img.shields.io/badge/html5-E34F26?&style=for-the-badge&logo=html5&logoColor=white" />
   <img src="https://img.shields.io/badge/css3-1572B6?&style=for-the-badge&logo=html5&logoColor=white" />
   <img src="https://img.shields.io/badge/javascript-F7DF1E?&style=for-the-badge&logo=html5&logoColor=white" />
