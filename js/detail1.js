@@ -155,11 +155,11 @@ const rewrite = (id) => {
       checkInput2 &&
       checkInput3
     ) {
-      // 조건 만족 시 데이터 보낸 후 테이블 리셋
+      // 조건 만족 시 데이터 보낸 후 테이블 수정된 칸만 수정
       same.career = changeCareer;
       same.name = changeName;
       same.age = changeAge;
-      const numAuto = Number(same.age).toLocaleString("ko-KR");
+      const numAuto = Number(same.age).toLocaleString("ko-KR"); //,자동 붙여줌
       changeTd.innerHTML = `${same.career}`;
       changeTd_name.innerHTML = `${same.name}`;
       changeTd_age.innerHTML = `${numAuto}`;
