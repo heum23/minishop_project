@@ -37,7 +37,7 @@ if (sameData) {
     <h1>${sameData.name}</h1>
     <p>가격: ${numAuto}원</p>
     <p>상세설명: ${sameData.career}</p>
-    <button onclick="getItem()">장바구니 담기</button>
+    <button class="button" onclick="getItem()">장바구니 담기</button>
   `;
 } else {
   // 데이터가 없을 경우 메시지 표시

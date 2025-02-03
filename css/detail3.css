@@ -303,30 +303,20 @@ body {
   .header {
     padding: 15px;
   }
-
+  .icon {
+    margin-right: 20px;
+  }
   .logo {
     width: 40px;
-    margin-bottom: 10px;
   }
 
   .shop {
     display: none;
   }
-
-  .cart-wrap {
-    padding: 10px;
-    gap: 5px;
-  }
-
   .img {
     width: 60px;
     height: 60px;
   }
-
-  .cart-wrap > div {
-    font-size: 12px;
-  }
-
   .button {
     padding: 6px 12px;
     font-size: 11px;

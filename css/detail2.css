@@ -52,7 +52,7 @@ p {
 }
 
 /* 버튼 스타일 */
-button {
+.button {
   margin-top: 20px;
   padding: 10px 20px;
   font-size: 16px;
@@ -355,4 +355,94 @@ li:hover {
 
 .f_sns_item:hover .black_overlay {
   opacity: 1; /* 마우스 hover 시 오버레이 보이기 */
+}
+/* 미디어 쿼리 - 화면 크기가 1024px 이하일 때 */
+@media screen and (max-width: 1024px) {
+  .main-wrap > * {
+    width: calc(33.33% - 20px); /* 3개씩 배치 */
+  }
+
+  .logo {
+    width: 50px;
+  }
+
+  .logo1 {
+    width: 35px;
+  }
+
+  .logo2 {
+    width: 30px;
+  }
+
+  .header {
+    padding: 0 15px;
+  }
+}
+
+/* 미디어 쿼리 - 화면 크기가 768px 이하일 때 */
+@media screen and (max-width: 768px) {
+  .main-wrap > * {
+    width: calc(50% - 20px); /* 2개씩 배치 */
+  }
+
+  .header {
+    padding: 20px;
+  }
+
+  .shop {
+    display: none;
+    font-size: 20px;
+  }
+
+  .logo {
+    margin-left: 0;
+    width: 45px;
+  }
+
+  .logo1 {
+    width: 35px;
+  }
+
+  .logo2 {
+    width: 30px;
+  }
+
+  .icon {
+    margin-right: 0;
+  }
+}
+
+/* 미디어 쿼리 - 화면 크기가 480px 이하일 때 */
+@media screen and (max-width: 480px) {
+  .main-wrap > * {
+    width: 100%; /* 한 줄에 하나씩 배치 */
+  }
+
+  .header {
+    padding: 15px;
+  }
+
+  .shop {
+    font-size: 18px;
+  }
+
+  .logo {
+    width: 40px;
+  }
+
+  .logo1 {
+    width: 30px;
+  }
+
+  .logo2 {
+    width: 25px;
+  }
+
+  .itembox {
+    padding: 10px;
+  }
+
+  .itembox div {
+    font-size: 14px;
+  }
 }
