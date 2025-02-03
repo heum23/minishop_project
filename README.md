@@ -124,3 +124,12 @@
 
 <br>
 
+### 🧡반응형 웹
+
+- 1024px, 768px, 480px 각각의 요소 크기 조절
+
+<br>
+
+![Image](https://github.com/user-attachments/assets/e5b6bff6-c43b-4c73-8f70-4728837067d1)
+
+<br>
