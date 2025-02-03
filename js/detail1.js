@@ -430,4 +430,3 @@ const plusCnt = () => {
   window.localStorage.setItem("data", JSON.stringify(dataSet));
 };
 plusCnt();
-console.log(dataSet);
