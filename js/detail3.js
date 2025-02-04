@@ -54,8 +54,6 @@ const del = (id) => {
   Swal.fire("삭제되었습니다", "", "success");
   const sameCart = subData.filter((item) => Number(item.id) !== id);
   subData = sameCart;
-  console.log("JSON.stringify(subData) >>> ", JSON.stringify(subData));
-
   window.localStorage.setItem("cart", JSON.stringify(subData));
   cartList();
   cart_number();
@@ -68,6 +66,7 @@ const trash = () => {
   cart_number();
   Swal.fire("장바구니를 비웠습니다!", "", "info");
 };
+
 const header = document.querySelector(".header");
 const logoDiv = document.querySelector(".logoDiv");
 const mainTitle = document.querySelector(".shop");

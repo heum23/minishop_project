@@ -41,25 +41,22 @@ if (sameData) {
   `;
 } else {
   // 데이터가 없을 경우 메시지 표시
-  document.getElementById(
-    "details"
-  ).innerHTML = `<p>표시할 내용이 없습니다!</p>`;
+  main.innerHTML = `<p>표시할 내용이 없습니다!</p>`;
 }
 //장바구니 담기 함수
 const getItem = () => {
   // 로컬 스토리지에서 기존 데이터 가져오기
   let subData = JSON.parse(localStorage.getItem("cart")) || []; // 기본값을 배열로 설정
 
-  // subData가 배열인지 확인 (예외 방지)
-  if (!Array.isArray(subData)) {
-    subData = []; // 배열로 초기화
-  }
+  // // subData가 배열인지 확인 (예외 방지)
+  // if (!Array.isArray(subData)) {
+  //   subData = []; // 배열로 초기화
+  // }
 
   // 중복 데이터 확인
   const same_cart = subData.find(
     (item) => Number(item.id) === Number(sameData.id)
   );
-
   if (!same_cart) {
     Swal.fire("장바구니에 담겼습니다.", "감사합니다", "success");
     // 중복이 아닐 경우에만 추가

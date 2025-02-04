@@ -422,6 +422,7 @@ scrollToTopBtn.addEventListener("click", () => {
   });
 });
 
+// 수량 데이터 더하기
 const plusCnt = () => {
   dataSet = dataSet.map((item) => ({
     ...item,

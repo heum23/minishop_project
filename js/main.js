@@ -14,12 +14,11 @@ const moveUrl = (type) => {
 };
 
 //아이템 목록 만들기
-//카데코리 분류 함수
 
+//카데코리 분류 함수
 const typeNum = (type) => {
   main.innerHTML = "";
   const filteredTypes = dataSet.filter((item) => item.type === type); // 'type' 사용
-  console.log(filteredTypes); // 동일한 type 값을 가진 객체 출력
   filteredTypes.map((item) => {
     const numAuto = Number(item.age).toLocaleString("ko-KR");
     main.innerHTML += `
@@ -39,6 +38,7 @@ const typeNum = (type) => {
 
 const main = document.querySelector(".main-wrap");
 
+// 물품 디브 만들기
 const makeDiv = () => {
   main.innerHTML = "";
   if (dataSet.length < 1) {
@@ -78,6 +78,7 @@ const like = (id) => {
     likebtn.setAttribute("data-liked", "true"); // 상태 업데이트
   }
 };
+// 장바구니 숫자 함수
 const cart_number = () => {
   let subData = JSON.parse(localStorage.getItem("cart")) || [];
   const cartNum = document.querySelector(".numLength");
