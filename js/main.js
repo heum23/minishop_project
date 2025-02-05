@@ -18,7 +18,7 @@ const moveUrl = (type) => {
 //카데코리 분류 함수
 const typeNum = (type) => {
   main.innerHTML = "";
-  const filteredTypes = dataSet.filter((item) => item.type === type); // 'type' 사용
+  const filteredTypes = dataSet.filter((item) => item.type === type); // 'type' 이 같은 물품
   filteredTypes.map((item) => {
     const numAuto = Number(item.age).toLocaleString("ko-KR");
     main.innerHTML += `
@@ -42,9 +42,11 @@ const main = document.querySelector(".main-wrap");
 const makeDiv = () => {
   main.innerHTML = "";
   if (dataSet.length < 1) {
+    //등록된 아이템 없을 시
     main.innerHTML = `<div>등록된 아이템이 없습니다!</div>`;
   } else {
     dataSet.map((item) => {
+      // 아이템 있을 시
       const numAuto = Number(item.age).toLocaleString("ko-KR");
       main.innerHTML += `
         <div onclick="redirectToDetail(${item.id})" class="itembox div${item.id}">
@@ -107,7 +109,7 @@ buttons.forEach((button) => {
     button.classList.add("active");
   });
 });
-//헤더 스크롤시 투명
+//헤더 스크롤 이벤트 시 색 변화 아이콘 변화
 const header = document.querySelector(".header");
 const logoDiv = document.querySelector(".logoDiv");
 const mainTitle = document.querySelector(".shop");
