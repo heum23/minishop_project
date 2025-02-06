@@ -52,7 +52,7 @@ const btnType = document.querySelectorAll(".radioBtn");
 const del = (id) => {
   const same = dataSet.find((item) => item.id == id);
   const datadel = dataSet.filter((item) => item.id !== same.id);
-  const datadel1 = dataSet.filter((item) => item.id === same.id);
+  // const datadel1 = dataSet.filter((item) => item.id === same.id);
   dataSet = datadel;
   const trDel = document.querySelector(`.tr${id}`);
   trDel.remove();
@@ -203,6 +203,7 @@ const changeImg = () => {
   words = Math.floor(Math.random() * 9999);
 };
 console.log(stars2);
+//카데코리 지정 버튼
 const btnType1 = document.querySelectorAll(".radioBtn");
 
 // 데이터 저장 함수
@@ -259,13 +260,22 @@ const saveData = () => {
   window.localStorage.setItem("data", JSON.stringify(dataSet));
 };
 
-// 데이터 저장
+// 데이터 저장 함수
 let open1 = true;
 let open2 = true;
 let open3 = true;
 let open4 = true;
-
+let open5 = true;
 const check = () => {
+  let selectedType = "";
+  btnType1.forEach((btn) => {
+    if (btn.checked) {
+      selectedType = btn.value;
+    }
+  });
+  if (selectedType !== "") {
+    open5 = false;
+  }
   // ID 검증
   const sometimes = dataSet.filter((item) => item.id == id.value);
   if (sometimes.length > 0) {
@@ -317,7 +327,7 @@ const check = () => {
 
   // 버튼 활성화/비활성화 관리
   const btn = document.querySelector(".btn");
-  if (!open1 && !open2 && !open3 && !open4) {
+  if (!open1 && !open2 && !open3 && !open4 && !open5) {
     btn.removeAttribute("disabled");
     btn.removeAttribute("style");
   } else {
@@ -327,23 +337,30 @@ const check = () => {
 };
 
 // 모든 입력 필드에 이벤트 연결
+// 입력 후 수정 시 조건에 맞는지 계속 감시
+btnType1.forEach((btn) => {
+  btn.addEventListener("change", () => check());
+});
 id.addEventListener("keyup", () => check());
 nameValue.addEventListener("keyup", () => check());
 age.addEventListener("keyup", () => check());
 career.addEventListener("keyup", () => check());
 
+//데이터 저장 클릭 시
 const clickData = () => {
   const btn = document.querySelector(".btn");
   saveData();
   maketable();
+  //인풋 태그 초기화
   document.querySelector(".id").value = "";
   document.querySelector(".name").value = "";
   document.querySelector(".age").value = "";
   document.querySelector(".career").value = "";
+  // 타입 버튼 초기화
   btnType1.forEach((btn) => {
     btn.checked = false;
   });
-
+  // 저장 버튼 다시 비활성화
   btn.setAttribute("disabled", "true");
   btn.style.opacity = 0.5;
 };
@@ -431,3 +448,32 @@ const plusCnt = () => {
   window.localStorage.setItem("data", JSON.stringify(dataSet));
 };
 plusCnt();
+
+function downloadCSV() {
+  if (!Array.isArray(dataSet) || dataSet.length === 0) {
+    alert("데이터가 없습니다.");
+    return;
+  }
+
+  let csvContent = "\uFEFF"; // UTF-8 BOM 추가
+
+  // CSV 헤더 추가
+  csvContent += "ID,이름,가격,상세설명,카테고리\r\n";
+
+  // 데이터 추가
+  for (let i = 0; i < dataSet.length; i++) {
+    csvContent += `"${dataSet[i].id}","${dataSet[i].name}","${dataSet[i].age}","${dataSet[i].career}","${dataSet[i].type}"\r\n`;
+  }
+
+  // Blob을 사용하여 CSV 생성 및 다운로드
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const downloadLink = document.createElement("a");
+
+  downloadLink.href = url;
+  downloadLink.download = "data.csv";
+
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
+}
