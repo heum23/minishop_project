@@ -548,3 +548,17 @@ li:hover {
 .f_sns_item:hover .black_overlay {
   opacity: 1; /* 마우스 hover 시 오버레이 보이기 */
 }
+.pagenation {
+  margin: 0 auto;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  gap: 8px;
+}
+.page {
+  display: flex;
+  gap: 10px;
+}
+.pagenumber {
+  cursor: pointer;
+}

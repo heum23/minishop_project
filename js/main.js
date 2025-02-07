@@ -14,19 +14,31 @@ const moveUrl = (type) => {
 };
 
 //아이템 목록 만들기
-
+let databox = dataSet;
+const showItem = 10;
+let totalPage = Math.ceil(databox.length / showItem);
 //카데코리 분류 함수
-const typeNum = (type) => {
+const typeNum = (type, id = 1) => {
   main.innerHTML = "";
+  btn = id;
   const filteredTypes = dataSet.filter((item) => item.type === type); // 'type' 이 같은 물품
-  filteredTypes.map((item) => {
+  databox = filteredTypes;
+
+  let categoryData = databox.slice(id * 10 - 10, id * 10);
+  if (type === "all") {
+    databox = dataSet;
+    categoryData = databox.slice(id * 10 - 10, id * 10);
+  }
+  totalPage = Math.ceil(databox.length / showItem);
+  pageNumber();
+  categoryData.map((item) => {
     const numAuto = Number(item.age).toLocaleString("ko-KR");
     main.innerHTML += `
         <div class="itembox div${item.id}">
         
           <img onclick="redirectToDetail(${item.id})" class="item Img${item.id}" src="${item.img}" /> 
           <div class="mainText">${item.name}</div>
-          <div>가격 : ${numAuto}원</div>
+          <div> ${numAuto}원</div>
           <div onclick="like(${item.id})" class="heartDiv" data-liked="false" id="heartDiv${item.id}">
           <img class="heart" src="/detailimg/heart.png" />
           </div>
@@ -38,33 +50,33 @@ const typeNum = (type) => {
 
 const main = document.querySelector(".main-wrap");
 
-// 물품 디브 만들기
-const makeDiv = () => {
-  main.innerHTML = "";
-  if (dataSet.length < 1) {
-    //등록된 아이템 없을 시
-    main.innerHTML = `<div>등록된 아이템이 없습니다!</div>`;
-  } else {
-    dataSet.map((item) => {
-      // 아이템 있을 시
-      const numAuto = Number(item.age).toLocaleString("ko-KR");
-      main.innerHTML += `
-        <div onclick="redirectToDetail(${item.id})" class="itembox div${item.id}">
-         
-          <img  class="item Img${item.id}" src="${item.img}" /> 
-          <div class="mainText">${item.name}</div>
-          <div> ${numAuto}원</div>
-          <div onclick="like(${item.id})" class="heartDiv" data-liked="false" id="heartDiv${item.id}">
-          <img class="heart" src="/detailimg/heart.png" />
-          </div>
-          <div class='comment'><div class="imgDiv"><img class="star" src="/detailimg/stars.png" /> : ${item.stars} </div><div class="imgDiv"><img class="stars" src="/detailimg/comment.png" /> : ${item.word}</div></div>
-          
-        </div>`;
-    });
-  }
-};
+// // 물품 디브 만들기
+// const makeDiv = () => {
+//   main.innerHTML = "";
+//   if (dataSet.length < 1) {
+//     //등록된 아이템 없을 시
+//     main.innerHTML = `<div>등록된 아이템이 없습니다!</div>`;
+//   } else {
+//     dataSet.map((item) => {
+//       // 아이템 있을 시
+//       const numAuto = Number(item.age).toLocaleString("ko-KR");
+//       main.innerHTML += `
+//         <div onclick="redirectToDetail(${item.id})" class="itembox div${item.id}">
 
-makeDiv();
+//           <img  class="item Img${item.id}" src="${item.img}" />
+//           <div class="mainText">${item.name}</div>
+//           <div> ${numAuto}원</div>
+//           <div onclick="like(${item.id})" class="heartDiv" data-liked="false" id="heartDiv${item.id}">
+//           <img class="heart" src="/detailimg/heart.png" />
+//           </div>
+//           <div class='comment'><div class="imgDiv"><img class="star" src="/detailimg/stars.png" /> : ${item.stars} </div><div class="imgDiv"><img class="stars" src="/detailimg/comment.png" /> : ${item.word}</div></div>
+
+//         </div>`;
+//     });
+//   }
+// };
+
+// makeDiv();
 
 // 좋아요 함수
 const like = (id) => {
@@ -186,3 +198,65 @@ scrollToTopBtn.addEventListener("click", () => {
     behavior: "smooth", // 부드러운 스크롤
   });
 });
+const pagenation = document.querySelector(".pagenation");
+pagenation.innerHTML = `<div  onclick="prevData()" class="prev">이전</div>
+<div class="page"></div>
+<div onclick="nextData()" class="next">다음</div>`;
+
+const pageDiv = document.querySelector(".page");
+// const totalPage = Math.ceil(databox.length / showItem);
+const pageNumber = () => {
+  pageDiv.innerHTML = "";
+  for (let i = 1; i <= totalPage; i++) {
+    pageDiv.innerHTML += `<div onclick="makeDiv1(${i})" class="div${i} pagenumber">${i}</div>`;
+  }
+};
+pageNumber();
+
+const prev = document.querySelector(".prev");
+const next = document.querySelector(".next");
+let btn = 1;
+const makeDiv1 = (id) => {
+  totalPage = Math.ceil(databox.length / showItem);
+  pageNumber();
+  main.innerHTML = "";
+  btn = id;
+  let dataSet1 = databox.slice(id * 10 - 10, id * 10);
+  if (dataSet1.length < 1) {
+    //등록된 아이템 없을 시
+    main.innerHTML = `<div>등록된 아이템이 없습니다!</div>`;
+  } else {
+    dataSet1.map((item) => {
+      // 아이템 있을 시
+      const numAuto = Number(item.age).toLocaleString("ko-KR");
+      main.innerHTML += `
+        <div onclick="redirectToDetail(${item.id})" class="itembox div${item.id}">
+         
+          <img  class="item Img${item.id}" src="${item.img}" /> 
+          <div class="mainText">${item.name}</div>
+          <div> ${numAuto}원</div>
+          <div onclick="like(${item.id})" class="heartDiv" data-liked="false" id="heartDiv${item.id}">
+          <img class="heart" src="/detailimg/heart.png" />
+          </div>
+          <div class='comment'><div class="imgDiv"><img class="star" src="/detailimg/stars.png" /> : ${item.stars} </div><div class="imgDiv"><img class="stars" src="/detailimg/comment.png" /> : ${item.word}</div></div>
+          
+        </div>`;
+    });
+    window.scrollTo(0, 0);
+  }
+};
+makeDiv1(1);
+const prevData = () => {
+  if (btn === 1) {
+    alert("첫");
+  } else {
+    makeDiv1(btn - 1);
+  }
+};
+const nextData = () => {
+  if (btn === totalPage) {
+    alert("끝");
+  } else {
+    makeDiv1(btn + 1);
+  }
+};
