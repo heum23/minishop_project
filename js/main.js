@@ -13,7 +13,6 @@ const moveUrl = (type) => {
   window.location.href = url;
 };
 
-//아이템 목록 만들기
 let databox = dataSet;
 const showItem = 10;
 let totalPage = Math.ceil(databox.length / showItem);
@@ -50,33 +49,6 @@ const typeNum = (type, id = 1) => {
 
 const main = document.querySelector(".main-wrap");
 
-// // 물품 디브 만들기
-// const makeDiv = () => {
-//   main.innerHTML = "";
-//   if (dataSet.length < 1) {
-//     //등록된 아이템 없을 시
-//     main.innerHTML = `<div>등록된 아이템이 없습니다!</div>`;
-//   } else {
-//     dataSet.map((item) => {
-//       // 아이템 있을 시
-//       const numAuto = Number(item.age).toLocaleString("ko-KR");
-//       main.innerHTML += `
-//         <div onclick="redirectToDetail(${item.id})" class="itembox div${item.id}">
-
-//           <img  class="item Img${item.id}" src="${item.img}" />
-//           <div class="mainText">${item.name}</div>
-//           <div> ${numAuto}원</div>
-//           <div onclick="like(${item.id})" class="heartDiv" data-liked="false" id="heartDiv${item.id}">
-//           <img class="heart" src="/detailimg/heart.png" />
-//           </div>
-//           <div class='comment'><div class="imgDiv"><img class="star" src="/detailimg/stars.png" /> : ${item.stars} </div><div class="imgDiv"><img class="stars" src="/detailimg/comment.png" /> : ${item.word}</div></div>
-
-//         </div>`;
-//     });
-//   }
-// };
-
-// makeDiv();
 
 // 좋아요 함수
 const like = (id) => {
